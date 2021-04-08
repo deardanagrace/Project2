@@ -1,11 +1,9 @@
 CurrentState,KeyTyped,KeyCode,MouseEvent,ClickableName,MapDirection,NextState
 Splash,,,mouseReleased,,,Instructions
 Instructions,,,,StartGame,,ExitPlane
-Instructions,,,,SelectAvatar,,AvatarSelection
-AvatarSelection,,,,Done,,Instructions
-ExitPlane,,,,,N,UglyIsland
-UglyIsland,,,,,E,Language
-UglyIsland,,,,,W,Houses
+ExitPlane,,,,ExitThePlane,,UglyIsland
+UglyIsland,,,,GoRight,,Language
+UglyIsland,,,,GoLeft,,Houses
 Language,,,,,N,Vegan
 Vegan,,,,,S,Language
 Vegan,,,,,N,Flowers
@@ -17,6 +15,8 @@ Photo,,,,,N,Ending
 Photo,,,,,W,Swimming
 Swimming,,,,,E,Photo
 Swimming,,,,,S,Fruits
+Fruits,,,,,S,Utensils
 Fruits,,,,,N,Swimming
+Utensils,,,,,S,Houses
 Utensils,,,,,N,Fruits
 Houses,,,,,N,Utensils

@@ -1,4 +1,6 @@
 ID,Name,State,PNGFilename,Text,x,y,visible
-0,StartGame,Instructions,,Start Game,100,650,yes
-1,SelectAvatar,Instructions,,Select Avatar,300,650,yes
-2,Done,AvatarSelection,,Done,100,650,yes
+0,GoToInstructions,Splash,,Start,550,580,yes
+1,StartGame,Instructions,,Start Game,550,580,yes
+2,ExitThePlane,ExitPlane,,Exit the Plane,550,580,yes
+3,GoRight,UglyIsland,,Go Right,1070,580,yes
+4,GoLeft,UglyIsland,,Go Left,136,580,yes

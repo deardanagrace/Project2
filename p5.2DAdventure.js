@@ -18,7 +18,8 @@ class AdventureManager {
         this.states = [];
         this.statesTable = loadTable(statesFilename, 'csv', 'header');
         this.interactionTable = loadTable(interactionFilename, 'csv', 'header');
-        
+        this.savedPlayerSpritePosition = createVector(width/2, height/2);
+
         if( clickableLayoutFilename === null ) {
             this.clickableTable = null;
         }
@@ -46,26 +47,16 @@ class AdventureManager {
             // this is the allocator itself
             this.states[validStateCount] = eval("new " + className);
             
-            // All classes (for now) have a PNGFilename, could add a blank room
-            this.states[validStateCount].setup(this.statesTable.getString(i, 'PNGFilename'));
+            // store name of the state in the PNGRoom
+            this.states[validStateCount].setName(this.statesTable.getString(i, 'StateName'));
 
-            // check to see if className is MazeRoom, and we add collision file, if so
-            if( className === "MazeRoom") {
-                print("loading maze room");
-                this.states[validStateCount].loadCollisionFile(this.statesTable.getString(i, 'CollisionFilename'));
-            }
+            // All classes (for now) have a PNGFilename, could add a blank room
+            this.states[validStateCount].setup( this.statesTable.getString(i, 'PNGFilename'),
+                                                this.statesTable.getString(i, 'CollisionFilename'));
+           
             this.states[validStateCount].preload();
 
-/*
-            if( className === "PNGRoom" ) {
-                // load the file from the table
-                this.states[validStateCount].setup(this.statesTable.getString(i, 'PNGFilename'));
-            }
-            else if( className == "MazeRoom" ) {
-                // do setup here
-            }
-*/
-             validStateCount++;
+            validStateCount++;
         }
     
         if( validStateCount > 0 ) {
@@ -76,8 +67,6 @@ class AdventureManager {
         else {
             this.hasValidStates = false;
         }
-
-        
 
         return this.hasValidStates;
     }
@@ -104,8 +93,23 @@ class AdventureManager {
         }
         else {
             this.checkPlayerSprite();
+
+            // this will reset the player position, if we go outside of a collision rect
+            if( this.states[this.currentState].checkForCollision(this.playerSprite) === true ) {
+                // set to last good position
+                this.playerSprite.position.x = this.savedPlayerSpritePosition.x;
+                this.playerSprite.position.y = this.savedPlayerSpritePosition.y;
+            }
+            else {
+                // save the last poisition for checkCollision in the future
+                this.savedPlayerSpritePosition.x = this.playerSprite.position.x;
+                this.savedPlayerSpritePosition.y = this.playerSprite.position.y;
+            }
+
             background(this.backgroundColor);
             this.states[this.currentState].draw();
+            
+
         }
     }
 
@@ -308,14 +312,12 @@ class AdventureManager {
         }
         else if(this.playerSprite.position.x > width+1 ) {
             this.playerSprite.position.x = width;
-            //this.changeState("Maze_NE");
         }
         else if(this.playerSprite.position.y < -1 ) {
             this.playerSprite.position.y = 0;
         }
         else if(this.playerSprite.position.y > height ) {
             this.playerSprite.position.y = height;
-            //this.changeState("Maze_NE");
         }
     }
 
@@ -349,34 +351,118 @@ class AdventureManager {
             // Otherwise, we are binding, so turn button on/off accordingly
             if( clickableStateArray[i] === newStateName ) {
                 this.clickableArray[i].visible = true;
-                print("set to visible");
+                //print("set to visible");
             }
             else {
                 this.clickableArray[i].visible = false;   
-                print("set to hide");
+               // print("set to hide");
             }
         }
     }
 }
 
+// this will be used with the loadTable() callback for the collision table
+// class variables are not available for callbacks
+// need a global variable with a ridiculous name to avoid name conflicts
+// save the this data
+var PNGRoomPushedThisArray = [];
+
+function PNGRoomFindTheThis() {
+    for( let i = 0; i < PNGRoomPushedThisArray.length; i++ ) {
+        // do stuff
+        if( PNGRoomPushedThisArray[i].collisionTableLoaded === false ) {
+            return PNGRoomPushedThisArray[i];
+        }
+    }
+
+    // test return
+    return null;
+}
+
+function PNGCollisionTableLoaded() {
+    print("PNGCollisionTableLoaded()");
+    let pThis = PNGRoomFindTheThis();
+    if(pThis === null ) {
+        print("Couldn't find the This");
+    }
+    else {
+        print("this =");
+        print(pThis);
+    }
+
+     if( pThis.collisionTable !== null) { 
+        pThis.output("collisionTableLoaded(): collision table row count = " + pThis.collisionTable.getRowCount());
+        for( let i = 0; i < pThis.collisionTable.getRowCount(); i++ ) {
+            pThis.collisionSX[i] = pThis.collisionTable.getString(i, 'sx');
+            pThis.collisionSY[i] = pThis.collisionTable.getString(i, 'sy');
+            pThis.collisionEX[i] = pThis.collisionTable.getString(i, 'ex');
+            pThis.collisionEY[i] = pThis.collisionTable.getString(i, 'ey');
+        }
+
+        pThis.collisionTableLoaded = true;
+    }
+}
 
 class PNGRoom {
     constructor() {
-        this.image = null;
+        // Image stuff
         this.imagePath = null;
+        this.image = null;
+
+        // collision stuff
+        this.collisionTable = null;
+        this.collisionSX = [];
+        this.collisionSY = [];
+        this.collisionEX = [];
+        this.collisionEY = [];
+    
+        // flag for first-time load for collision table proper loading
+        this.loaded = false;
+        this.stateName = "";
+        this.collisionTableLoaded = false;
     }
 
-    setup(_imagePath) {
-        this.imagePath = String(_imagePath);
+    setName(s) {
+        this.stateName = s;
     }
 
+    // filepath to PNG is 1st variable
+    // file to collision CSV is 2nd variable (may be empty string)
+    setup(_imagePath, _collisionPath = "") {
+        print( "setup()" + _imagePath);
+
+        this.imagePath = _imagePath;
+
+        // use for callbacks
+        // PNGRoomPushedNameList.push(this.stateName);
+        // PNGRoomPushedThis.push(this);
+
+        if( _collisionPath !== "" ) {
+           // PNGRoomPushedThis = this;
+           
+           PNGRoomPushedThisArray.push(this);
+            this.collisionTable = loadTable(_collisionPath, 'csv', 'header', PNGCollisionTableLoaded);
+            this.output("setup(), loading collision table = " + _collisionPath);
+        }
+    }
+    
     // empty, sublcasses can override
     preload() {
        
     }
 
+
+
+
     load() {
         this.image = loadImage(this.imagePath);
+        // this loads the collision table, we use the flag b/c loadTable needs
+        // time to load the data and won't work properly for a few cycles
+        // if( this.loaded === false ) {
+        //     // load the collisions
+            
+        //     this.loaded = true; 
+        // }
     }
 
     unload() {
@@ -392,41 +478,37 @@ class PNGRoom {
         push();
         imageMode(CENTER);
         image(this.image,width/2,height/2);
-        pop();
-    }
-}
 
-class MazeRoom extends PNGRoom {
-    constructor() {
-        super();
-        
+        //imageMode(CORNER);
+        //fill(255,0,0);
+        // draw rects to see...
 
-        this.collisionTable = null;
-        this.collisionSX = [];
-        this.collisionSY = [];
-        this.collisionEX = [];
-        this.collisionEY = [];
+        pop(); 
     }
 
-    loadCollisionFile(collisionCSV) {
-        print("collision filename = " + collisionCSV );
-
-        this.collisionTable = loadTable(collisionCSV, 'csv', 'header');
-    }
-
-    // load the image (super), load the arrays from the collision table
-    load() {
-        super.load();
-
-       // print( this.collisionTable.getRowCount() );
-
-        for( let i = 0; i < this.collisionTable.getRowCount(); i++ ) {
-            this.collisionSX[i] = this.collisionTable.getString(i, 'sx');
-            this.collisionSY[i] = this.collisionTable.getString(i, 'sy');
-            this.collisionEX[i] = this.collisionTable.getString(i, 'ex');
-            this.collisionEY[i] = this.collisionTable.getString(i, 'ey');
+    // Go through our array and ook to see if we are in bounds anywhere
+    checkForCollision(ps) {
+        if( ps !== null ) {  
+            for(let i = 0; i < this.collisionSX.length; i++ ) {
+                if( ps.position.x >= this.collisionSX[i] &&  ps.position.x <= this.collisionEX[i] ) {
+                    if( ps.position.y >= this.collisionSY[i] &&  ps.position.y <= this.collisionEY[i] ) {
+                        //print("collsion at shape " + i);
+                        return true;
+                    }
+                }
+            }
         }
+
+        return false; 
+    }
+
+    
+    // output to DebugScreen or console window, if we have no debug object
+    output(s) {
+        print(s);
     }
 }
+
+
 
 
