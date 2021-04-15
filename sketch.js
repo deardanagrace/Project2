@@ -81,7 +81,7 @@ function draw() {
 // pass to adventure manager, this do the draw / undraw events
 function keyPressed() {
     // toggle fullscreen mode
-    if (key === 'f') {
+    if (key === 'f') {n*c
         fs = fullscreen();
         fullscreen(!fs);
         return;
