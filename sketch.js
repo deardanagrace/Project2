@@ -1,5 +1,5 @@
 /***********************************************************************************
- Trip	
+ Trip   
   by Dana Capistrano
   
 this is giving my anxiety but it might just be the two red bulls and iced coffee i just drank ¯\_(ツ)_/¯
@@ -27,8 +27,9 @@ const playGameIndex = 0;
 function preload() {
     clickablesManager = new ClickableManager('data/clickableLayout.csv');
     adventureManager = new AdventureManager('data/adventureStates.csv', 'data/interactionTable.csv', 'data/clickableLayout.csv');
-    myHeadingFont = loadFont ('assets/Mondwest-Regular.otf');
-    myBodyFont = loadFont ('assets/NeueBit-Bold.otf');
+    myHeadingFont = loadFont('assets/Mondwest-Regular.otf');
+    myBodyFont = loadFont('assets/NeueBit-Bold.otf');
+
 }
 
 // Setup the adventure manager
@@ -57,7 +58,7 @@ function setup() {
 
 // Adventure manager handles it all!
 function draw() {
-        background ('#79cdff');
+    background('#79cdff');
     // draws background rooms and handles movement from one to another
     adventureManager.draw();
 
@@ -81,7 +82,8 @@ function draw() {
 // pass to adventure manager, this do the draw / undraw events
 function keyPressed() {
     // toggle fullscreen mode
-    if (key === 'f') {n*c
+    if (key === 'f') {
+        n * c
         fs = fullscreen();
         fullscreen(!fs);
         return;
@@ -96,42 +98,42 @@ function keyPressed() {
 }
 
 function mouseReleased() {
-  adventureManager.mouseReleased();
+    adventureManager.mouseReleased();
 }
 //-------------- YOUR SPRITE MOVEMENT CODE HERE  ---------------//
 function moveSprite() {
-// move side to side
-	//walk to the right
-	if(keyIsDown(68)) {
-		playerSprite.changeAnimation('walking');
-		//flip to go right
-		playerSprite.mirrorX(1);
-		playerSprite.velocity.x = 4;
-	}
-	//walk to the left
-	else if(keyIsDown(65)) {
-		playerSprite.changeAnimation('walking');
-		//flip to go left
-		playerSprite.mirrorX(-1);
-		playerSprite.velocity.x = -4;
-	}
-	//move up and down
-	//going up
-	else if(keyIsDown(83)) {
-		playerSprite.changeAnimation('walking');
-		playerSprite.velocity.y = 4;
-	}
-	//going down
-	else if(keyIsDown(87)) {
-		playerSprite.changeAnimation('walking');
-		playerSprite.velocity.y = -4;
-	}
+    // move side to side
+    //walk to the right
+    if (keyIsDown(68)) {
+        playerSprite.changeAnimation('walking');
+        //flip to go right
+        playerSprite.mirrorX(1);
+        playerSprite.velocity.x = 4;
+    }
+    //walk to the left
+    else if (keyIsDown(65)) {
+        playerSprite.changeAnimation('walking');
+        //flip to go left
+        playerSprite.mirrorX(-1);
+        playerSprite.velocity.x = -4;
+    }
+    //move up and down
+    //going up
+    else if (keyIsDown(83)) {
+        playerSprite.changeAnimation('walking');
+        playerSprite.velocity.y = 4;
+    }
+    //going down
+    else if (keyIsDown(87)) {
+        playerSprite.changeAnimation('walking');
+        playerSprite.velocity.y = -4;
+    }
     //standing
-	else {
-		playerSprite.changeAnimation('idle');
-		playerSprite.velocity.x = 0; 
-		playerSprite.velocity.y = 0; 
-	}
+    else {
+        playerSprite.changeAnimation('idle');
+        playerSprite.velocity.x = 0;
+        playerSprite.velocity.y = 0;
+    }
 }
 //-------------- CLICKABLE CODE  ---------------//
 
@@ -157,10 +159,10 @@ clickableButtonHover = function() {
 clickableButtonOnOutside = function() {
     // backto our green color
     this.color = "#b6d42c";
-        this.cornerRadius = 60;
-        this.strokeWeight=0;
-        this.textSize = 18;
-        this.textFont = myBodyFont;
+    this.cornerRadius = 60;
+    this.strokeWeight = 0;
+    this.textSize = 18;
+    this.textFont = myBodyFont;
 }
 
 clickableButtonPressed = function() {
@@ -206,3 +208,22 @@ class InstructionsScreen extends PNGRoom {
         text(this.instructionsText, width / 6, height / 6, this.textBoxWidth, this.textBoxHeight);
     }
 }
+
+// class Houses extends PNGRoom {
+
+//     preload() {
+//         this.housetext = null;
+//         this.talkedtoNPC = false;
+//         talkedtoNPC1 = false;
+//         talkedtoNPC2 = false;
+
+//         this.npc1 = createSprite(662, 192);
+//         this.npc1.addAnimation ('regular', loadAnimation('assets/NPCS/npc1-01.png','assets/NPCS/npc1-06.png') );
+//     }
+
+//     load() {
+//         super.load ();
+//         if ()
+//         this.housetext = loadImage ('assets/dialogue/HousesText.png');
+//     }
+// }
