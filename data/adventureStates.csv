@@ -4,7 +4,7 @@ ID,StateName,ClassName,PNGFilename,CollisionFilename
 3,ExitPlane,PNGRoom,assets/airplane.png,
 2,UglyIsland,PNGRoom,assets/islandviwq.gif,
 3,Language,PNGRoom,assets/languagebackground.png,assets/languagebackground_cl.csv
-4,Houses,PNGRoom,assets/housesbackground.png,assets/housesbackground_cl.csv
+4,Houses,HouseScreen,assets/housesbackground.png,assets/housesbackground_cl.csv
 5,Vegan,PNGRoom,assets/veganbackground.png,assets/veganbackground_cl.csv
 6,Flowers,PNGRoom,assets/flowerbackground.png,assets/flowerbackground_cl.csv
 7,Water,PNGRoom,assets/waterbackground.png,assets/waterbackground_cl.csv

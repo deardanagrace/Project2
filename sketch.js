@@ -11,7 +11,7 @@ var adventureManager;
 // p5.play
 var playerSprite;
 var playerAnimation;
-
+var npc1talk;
 //load the font
 var myHeadingFont;
 var myBodyFont;
@@ -20,8 +20,13 @@ var myBodyFont;
 var clickablesManager; // the manager class
 var clickables; // an array of clickable objects
 
+var NPCdialogue = []; //Dialogue array
+var dialogueFunction; // variable that is a function
+
 // indexes into the clickable array (constants)
 const playGameIndex = 0;
+
+var talkedtoweirdNPC = false;
 
 // Allocate Adventure Manager with states table and interaction tables
 function preload() {
@@ -30,6 +35,29 @@ function preload() {
     myHeadingFont = loadFont('assets/Mondwest-Regular.otf');
     myBodyFont = loadFont('assets/NeueBit-Bold.otf');
 
+
+    // NPCdialogue[0] = loadImage('assets/dialogue/HousesText.png');
+    // NPCdialogue[1] = loadImage('assets/dialogue/HousesText_1.png');
+    // NPCdialogue[2] = loadImage('assets/dialogue/HousesText_2.png');
+    // NPCdialogue[3] = loadImage('assets/dialogue/HousesText_3.png');
+    // NPCdialogue[4] = loadImage('assets/dialogue/HousesText_4.png');
+    // NPCdialogue[5] = loadImage('assets/dialogue/HousesText_5.png');
+    // NPCdialogue[6] = loadImage('assets/dialogue/HousesText_6.png');
+    // NPCdialogue[7] = loadImage('assets/dialogue/LanguageText1.png');
+    // NPCdialogue[8] = loadImage('assets/dialogue/LanguageText2.png');
+    // NPCdialogue[9] = loadImage('assets/dialogue/LanguageText3.png');
+    // NPCdialogue[10] = loadImage('assets/dialogue/LanguageText4.png');
+    // NPCdialogue[11] = loadImage('assets/dialogue/LanguageText5.png');
+    // NPCdialogue[12] = loadImage('assets/dialogue/LanguageText6.png');
+    // NPCdialogue[13] = loadImage('assets/dialogue/LanguageText7.png');
+    // NPCdialogue[14] = loadImage('assets/dialogue/VeganText.png');
+    // NPCdialogue[15] = loadImage('assets/dialogue/VeganText_1.png');
+    // NPCdialogue[16] = loadImage('assets/dialogue/VeganText_2.png');
+    // NPCdialogue[17] = loadImage('assets/dialogue/VeganText_3.png');
+    // NPCdialogue[18] = loadImage('assets/dialogue/VeganText_4.png');
+    // NPCdialogue[19] = loadImage('assets/dialogue/VeganText_5.png');
+    // NPCdialogue[20] = loadImage('assets/dialogue/VeganText_6.png');
+    // NPCdialogue[21] = loadImage('assets/dialogue/VeganText_7.png');
 }
 
 // Setup the adventure manager
@@ -171,7 +199,14 @@ clickableButtonPressed = function() {
     adventureManager.clickablePressed(this.name);
 }
 
+// function talktoNPC1() {
+//         image(NPCdialogue[0], 532, 15);
 
+// }
+
+    function mousePressed () {
+        this.npc1talk.nextFrame();
+    }
 
 //-------------- SUBCLASSES / YOUR DRAW CODE CAN GO HERE ---------------//
 
@@ -209,21 +244,42 @@ class InstructionsScreen extends PNGRoom {
     }
 }
 
-// class Houses extends PNGRoom {
+class HouseScreen extends PNGRoom {
 
-//     preload() {
-//         this.housetext = null;
-//         this.talkedtoNPC = false;
-//         talkedtoNPC1 = false;
-//         talkedtoNPC2 = false;
+    preload() {
+        this.npc1 = createSprite(662, 192);
+        this.npc1.addAnimation('regular', loadAnimation('assets/NPCS/npc101.png', 'assets/NPCS/npc106.png'));
 
-//         this.npc1 = createSprite(662, 192);
-//         this.npc1.addAnimation ('regular', loadAnimation('assets/NPCS/npc1-01.png','assets/NPCS/npc1-06.png') );
-//     }
+        this.npc1talk = createSprite(532, 15);
+        this.npc1talk.addAnimation('talk', loadAnimation('assets/dialogue/HousesText1.png', 'assets/dialogue/HousesText_6.png'));
+        this.npc1talk.playing = false;
 
-//     load() {
-//         super.load ();
-//         if ()
-//         this.housetext = loadImage ('assets/dialogue/HousesText.png');
-//     }
-// }
+        
+
+        this.talkbubble = null;
+        this.talkedtoNPC = false;
+        talkedtoweirdNPC = false;
+
+    }
+
+    load() {
+        super.load();
+
+    }
+
+    unload() {
+        super.unload();
+
+        this.talkbubble = null;
+        talkedtoweirdNPC = false;
+    }
+    draw() {
+        super.draw();
+        drawSprite(this.npc1);
+        // if (this) {
+        //     playerSprite.overlap(this.npc1, image(NPCdialogue[1], 532, 15));
+        // } else {
+        //     playerSprite.overlap(this.npc1, image(NPCdialogue[1], 532, 15));
+        // }
+    }
+}
