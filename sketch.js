@@ -1,8 +1,8 @@
 /***********************************************************************************
- Trip   
+Vacay
   by Dana Capistrano
   
-this is giving my anxiety but it might just be the two red bulls and iced coffee i just drank ¯\_(ツ)_/¯
+mwahahah i finished the code, bitches. only took me a billion years!!!!!!!! heheheheh
 ***********************************************************************************/
 
 // adventure manager global  
