@@ -247,24 +247,24 @@ class InstructionsScreen extends PNGRoom {
     }
 }
 class ExitPlaneScreen extends PNGRoom {
-	preload() {
-		this.planeDialogue = createSprite(662, 142);
+    preload() {
+        this.planeDialogue = createSprite(662, 142);
         this.planeDialogue.addAnimation('talk', loadAnimation('assets/dialogue/ExitPlaneText.png'));
-	}
-	draw() {
-		 super.draw();
+    }
+    draw() {
+        super.draw();
         drawSprite(this.planeDialogue);
-	}
+    }
 }
 class UglyIslandScreen extends PNGRoom {
-	preload() {
-		this.islandDialogue = createSprite(662, 290);
+    preload() {
+        this.islandDialogue = createSprite(662, 290);
         this.islandDialogue.addAnimation('talk', loadAnimation('assets/dialogue/UglyIslandText.png'));
-	}
-	draw() {
-		 super.draw();
+    }
+    draw() {
+        super.draw();
         drawSprite(this.islandDialogue);
-}
+    }
 }
 class HouseScreen extends PNGRoom {
 
@@ -313,8 +313,8 @@ class UtensilsScreen extends PNGRoom {
         this.npc3 = createSprite(290, 520);
         this.npc3.addAnimation('regular', loadAnimation('assets/NPCS/npc201.png', 'assets/NPCS/npc206.png'));
         //preloading the table!!!
-        this.table = createSprite (341,557);
-        this.table.addAnimation('tabling',loadAnimation ('assets/table.png'));
+        this.table = createSprite(341, 557);
+        this.table.addAnimation('tabling', loadAnimation('assets/table.png'));
         //draw dialogue boxes
         this.utensiltalk = createSprite(420, 400);
         this.utensiltalk.addAnimation('talk', loadAnimation('assets/dialogue/UtensilText.png'));
@@ -331,7 +331,7 @@ class UtensilsScreen extends PNGRoom {
         drawSprite(this.npc2);
         drawSprite(this.npc3);
         drawSprite(this.utensiltalk);
-        drawSprite (this.table);
+        drawSprite(this.table);
 
         if (playerSprite.overlap(this.npc1)) {
             this.utensiltalk.visible = true;
@@ -396,10 +396,10 @@ class FruitsScreen extends PNGRoom {
         this.coconut3.addAnimation('fruiting', 'assets/coconut.png');
         this.coconut3.addAnimation('collected', 'assets/fruitempty.png');
 
-       //a silly little trigger container so that dialogue will automatically load when you enter the state/ screen
+        //a silly little trigger container so that dialogue will automatically load when you enter the state/ screen
 
-       this.trigger = createSprite (368,672);
-       this.trigger.addAnimation ('triggered','assets/emptytrigger.png');
+        this.trigger = createSprite(368, 672);
+        this.trigger.addAnimation('triggered', 'assets/emptytrigger.png');
     }
 
     load() {
@@ -417,22 +417,22 @@ class FruitsScreen extends PNGRoom {
         drawSprite(this.fruittalk);
         drawSprite(this.fruittalk1);
         //the fruits
-       	drawSprite (this.persimon1);
-       	drawSprite (this.persimon2);
-       	drawSprite (this.persimon3);
-       	drawSprite (this.pineapple1);
-       	drawSprite (this.pineapple2);
-       	drawSprite (this.pineapple3);
-       	drawSprite (this.banana1);
-       	drawSprite (this.banana2);
-       	drawSprite (this.banana3);
-       	drawSprite (this.coconut1);
-       	drawSprite (this.coconut2);
-       	drawSprite (this.coconut3);
-       	//trigger
-       	drawSprite (this.trigger);
-       	//trigger interaction
-       if (playerSprite.overlap(this.trigger)) {
+        drawSprite(this.persimon1);
+        drawSprite(this.persimon2);
+        drawSprite(this.persimon3);
+        drawSprite(this.pineapple1);
+        drawSprite(this.pineapple2);
+        drawSprite(this.pineapple3);
+        drawSprite(this.banana1);
+        drawSprite(this.banana2);
+        drawSprite(this.banana3);
+        drawSprite(this.coconut1);
+        drawSprite(this.coconut2);
+        drawSprite(this.coconut3);
+        //trigger
+        drawSprite(this.trigger);
+        //trigger interaction
+        if (playerSprite.overlap(this.trigger)) {
             this.fruittalk.visible = true;
         } else {
             this.fruittalk.visible = false;
@@ -443,8 +443,8 @@ class FruitsScreen extends PNGRoom {
         } else {
             this.fruittalk1.visible = false;
         }
-       	//if overlaps with the fruit, character collects it :) ((it goes invisible hehehe))
-       	if (this.persimon1.overlap(playerSprite)) {
+        //if overlaps with the fruit, character collects it :) ((it goes invisible hehehe))
+        if (this.persimon1.overlap(playerSprite)) {
             this.persimon1.changeAnimation('collected');
         }
         if (this.persimon2.overlap(playerSprite)) {
@@ -462,7 +462,7 @@ class FruitsScreen extends PNGRoom {
         if (this.pineapple3.overlap(playerSprite)) {
             this.pineapple3.changeAnimation('collected');
         }
-         if (this.banana1.overlap(playerSprite)) {
+        if (this.banana1.overlap(playerSprite)) {
             this.banana1.changeAnimation('collected');
         }
         if (this.banana2.overlap(playerSprite)) {
@@ -490,19 +490,22 @@ class LanguageScreen extends PNGRoom {
 
     preload() {
         //draw npcs
-        this.npc1 = createSprite(662, 192);
+        this.npc1 = createSprite(657, 192);
         this.npc1.addAnimation('regular', loadAnimation('assets/NPCS/npc301.png', 'assets/NPCS/npc306.png'));
-        this.npc2 = createSprite(1056, 322);
+        this.npc2 = createSprite(1056, 260);
         this.npc2.addAnimation('regular', loadAnimation('assets/NPCS/npc401.png', 'assets/NPCS/npc406.png'));
         this.npc3 = createSprite(547, 443);
         this.npc3.addAnimation('regular', loadAnimation('assets/NPCS/npc501.png', 'assets/NPCS/npc506.png'));
         //draw dialogue boxes
-        this.languagetalk = createSprite(666, 90);
+        this.languagetalk = createSprite(646, 70);
         this.languagetalk.addAnimation('talk', loadAnimation('assets/dialogue/LanguageText.png'));
-        this.languagetalk1 = createSprite(666, 90);
+        this.languagetalk1 = createSprite(547, 310);
         this.languagetalk1.addAnimation('talk', loadAnimation('assets/dialogue/languagetext2.png'));
-        this.languagetalk2 = createSprite(666, 90);
+        this.languagetalk2 = createSprite(547, 310);
         this.languagetalk2.addAnimation('talk', loadAnimation('assets/dialogue/languagetext3.png'));
+        //trigger
+        this.trigger = createSprite(174, 575);
+        this.trigger.addAnimation('triggered', 'assets/emptytrigger.png');
     }
 
     load() {
@@ -518,22 +521,23 @@ class LanguageScreen extends PNGRoom {
         drawSprite(this.languagetalk);
         drawSprite(this.languagetalk1);
         drawSprite(this.languagetalk2);
-
-
+        drawSprite(this.trigger);
+        //trigger interaction
+        if (playerSprite.overlap(this.trigger)) {
+            this.languagetalk2.visible = true;
+        } else {
+            this.languagetalk2.visible = false;
+        }
+        //dialogue interactions
         if (playerSprite.overlap(this.npc1)) {
             this.languagetalk.visible = true;
         } else {
             this.languagetalk.visible = false;
         }
-        if (playerSprite.overlap(this.npc2)) {
+        if (playerSprite.overlap(this.npc3)) {
             this.languagetalk1.visible = true;
         } else {
             this.languagetalk1.visible = false;
-        }
-        if (playerSprite.overlap(this.npc3)) {
-            this.languagetalk2.visible = true;
-        } else {
-            this.languagetalk2.visible = false;
         }
     }
 }
@@ -564,8 +568,8 @@ class swimmingScreen extends PNGRoom {
         this.swimmingtalk = createSprite(1070, 620);
         this.swimmingtalk.addAnimation('talk', loadAnimation('assets/dialogue/SwimmingText.png'));
         //trigger preloading
-          this.trigger = createSprite (1066,661);
-       this.trigger.addAnimation ('triggered','assets/emptytrigger.png');
+        this.trigger = createSprite(1066, 661);
+        this.trigger.addAnimation('triggered', 'assets/emptytrigger.png');
     }
 
     load() {
@@ -583,7 +587,7 @@ class swimmingScreen extends PNGRoom {
         drawSprite(this.coral3);
         drawSprite(this.coral3a);
         drawSprite(this.swimmingtalk);
-        drawSprite (this.trigger);
+        drawSprite(this.trigger);
         //overlapping interactions
         if (this.coral1.overlap(playerSprite)) {
             this.coral1.changeAnimation('broke');
@@ -626,8 +630,10 @@ class veganScreen extends PNGRoom {
         this.npc3 = createSprite(547, 443);
         this.npc3.addAnimation('regular', loadAnimation('assets/NPCS/npc201.png', 'assets/NPCS/npc206.png'));
         //draw dialogue boxes
-        this.vegantalk = createSprite(666, 90);
+        this.vegantalk = createSprite(547, 303);
         this.vegantalk.addAnimation('talk', loadAnimation('assets/dialogue/VeganText.png'));
+        this.vegantalk1 = createSprite(1056, 190);
+        this.vegantalk1.addAnimation('talk', loadAnimation('assets/dialogue/VeganText1.png'));
     }
 
     load() {
@@ -641,12 +647,17 @@ class veganScreen extends PNGRoom {
         drawSprite(this.npc2);
         drawSprite(this.npc3);
         drawSprite(this.vegantalk);
+        drawSprite(this.vegantalk1);
 
-
-        if (playerSprite.overlap(this.npc1)) {
+        if (playerSprite.overlap(this.npc3)) {
             this.vegantalk.visible = true;
         } else {
             this.vegantalk.visible = false;
+        }
+        if (playerSprite.overlap(this.npc2)) {
+            this.vegantalk1.visible = true;
+        } else {
+            this.vegantalk1.visible = false;
         }
     }
 }
@@ -656,34 +667,152 @@ class flowerScreen extends PNGRoom {
 
     preload() {
         //draw npcs
-        this.npc1 = createSprite(662, 192);
+        this.npc1 = createSprite(1096, 472);
         this.npc1.addAnimation('regular', loadAnimation('assets/NPCS/npc601.png', 'assets/NPCS/npc606.png'));
-        this.npc2 = createSprite(1056, 322);
-        this.npc2.addAnimation('regular', loadAnimation('assets/NPCS/npc101.png', 'assets/NPCS/npc106.png'));
-        this.npc3 = createSprite(547, 443);
-        this.npc3.addAnimation('regular', loadAnimation('assets/NPCS/npc501.png', 'assets/NPCS/npc506.png'));
         //draw dialogue boxes
-        this.flowertalk = createSprite(666, 90);
+        this.flowertalk = createSprite(1096, 372);
         this.flowertalk.addAnimation('talk', loadAnimation('assets/dialogue/flowertext.png'));
-    }
+        //empty 
+        this.flower1a = createSprite(random(166, 600), random(83, 318));
+        this.flower1a.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower1a.addAnimation('flower', loadAnimation('assets/flower1.png'));
+        this.flower1b = createSprite(random(810, 1027), random(83, 318));
+        this.flower1b.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower1b.addAnimation('flower', loadAnimation('assets/flower1.png'));
+        this.flower1c = createSprite(random(166, 600), random(83, 318));
+        this.flower1c.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower1c.addAnimation('flower', loadAnimation('assets/flower1.png'));
+        this.flower1d = createSprite(random(810, 1027), random(83, 318));
+        this.flower1d.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower1d.addAnimation('flower', loadAnimation('assets/flower1.png'));
+        this.flower2a = createSprite(random(379, 818), random(527, 284));
+        this.flower2a.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower2a.addAnimation('flower', loadAnimation('assets/flower2.png'));
+        this.flower2b = createSprite(random(379, 818), random(527, 284));
+        this.flower2b.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower2b.addAnimation('flower', loadAnimation('assets/flower2.png'));
+        this.flower2c = createSprite(random(379, 818), random(527, 284));
+        this.flower2c.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower2c.addAnimation('flower', loadAnimation('assets/flower2.png'));
+        this.flower2d = createSprite(random(379, 818), random(527, 284));
+        this.flower2d.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower2d.addAnimation('flower', loadAnimation('assets/flower2.png'));
+        this.flower3a = createSprite(random(278, 596), random(72, 533));
+        this.flower3a.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower3a.addAnimation('flower', loadAnimation('assets/flower3.png'));
+        this.flower3b = createSprite(random(278, 596), random(72, 533));
+        this.flower3b.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower3b.addAnimation('flower', loadAnimation('assets/flower3.png'));
+        this.flower3c = createSprite(random(278, 596), random(72, 533));
+        this.flower3c.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower3c.addAnimation('flower', loadAnimation('assets/flower3.png'));
+        this.flower3d = createSprite(random(278, 596), random(72, 533));
+        this.flower3d.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower3d.addAnimation('flower', loadAnimation('assets/flower3.png'));
+        this.flower3e = createSprite(random(278, 596), random(72, 533));
+        this.flower3e.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower3e.addAnimation('flower', loadAnimation('assets/flower3.png'));
+        this.flower4a = createSprite(random(557, 824), random(291, 580));
+        this.flower4a.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower4a.addAnimation('flower', loadAnimation('assets/flower4.png'));
+        this.flower4b = createSprite(random(557, 824), random(291, 580));
+        this.flower4b.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower4b.addAnimation('flower', loadAnimation('assets/flower4.png'));
+        this.flower4c = createSprite(random(557, 824), random(291, 580));
+        this.flower4c.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower4c.addAnimation('flower', loadAnimation('assets/flower4.png'))
+        this.flower4d = createSprite(random(557, 824), random(291, 580));
+        this.flower4d.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower4d.addAnimation('flower', loadAnimation('assets/flower4.png'))
+        this.flower4e = createSprite(random(557, 824), random(291, 580));
+        this.flower4e.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.flower4e.addAnimation('flower', loadAnimation('assets/flower4.png'))
 
-    load() {
-        super.load();
     }
 
     draw() {
         //place sprites
         super.draw();
         drawSprite(this.npc1);
-        drawSprite(this.npc2);
-        drawSprite(this.npc3);
         drawSprite(this.flowertalk);
-
+        drawSprite(this.flower1a);
+        drawSprite(this.flower1b);
+        drawSprite(this.flower1c);
+        drawSprite(this.flower1d);
+        drawSprite(this.flower2a);
+        drawSprite(this.flower2b);
+        drawSprite(this.flower2c);
+        drawSprite(this.flower2d);
+        drawSprite(this.flower3a);
+        drawSprite(this.flower3b);
+        drawSprite(this.flower3c);
+        drawSprite(this.flower3d);
+        drawSprite(this.flower3e);
+        drawSprite(this.flower4a);
+        drawSprite(this.flower4b);
+        drawSprite(this.flower4c);
+        drawSprite(this.flower4d);
+        drawSprite(this.flower4e);
 
         if (playerSprite.overlap(this.npc1)) {
             this.flowertalk.visible = true;
         } else {
             this.flowertalk.visible = false;
+        }
+        //overlapping interactions
+        if (this.flower1a.overlap(playerSprite)) {
+            this.flower1a.changeAnimation('flower');
+        }
+        if (this.flower1b.overlap(playerSprite)) {
+            this.flower1b.changeAnimation('flower');
+        }
+        if (this.flower1c.overlap(playerSprite)) {
+            this.flower1c.changeAnimation('flower');
+        }
+        if (this.flower1d.overlap(playerSprite)) {
+            this.flower1d.changeAnimation('flower');
+        }
+        if (this.flower2a.overlap(playerSprite)) {
+            this.flower2a.changeAnimation('flower');
+        }
+        if (this.flower2b.overlap(playerSprite)) {
+            this.flower2b.changeAnimation('flower');
+        }
+        if (this.flower2c.overlap(playerSprite)) {
+            this.flower2c.changeAnimation('flower');
+        }
+        if (this.flower2d.overlap(playerSprite)) {
+            this.flower2d.changeAnimation('flower');
+        }
+        if (this.flower3a.overlap(playerSprite)) {
+            this.flower3a.changeAnimation('flower');
+        }
+        if (this.flower3b.overlap(playerSprite)) {
+            this.flower3b.changeAnimation('flower');
+        }
+        if (this.flower3c.overlap(playerSprite)) {
+            this.flower3c.changeAnimation('flower');
+        }
+        if (this.flower3d.overlap(playerSprite)) {
+            this.flower3d.changeAnimation('flower');
+        }
+        if (this.flower3e.overlap(playerSprite)) {
+            this.flower3e.changeAnimation('flower');
+        }
+        if (this.flower4a.overlap(playerSprite)) {
+            this.flower4a.changeAnimation('flower');
+        }
+        if (this.flower4b.overlap(playerSprite)) {
+            this.flower4b.changeAnimation('flower');
+        }
+        if (this.flower4c.overlap(playerSprite)) {
+            this.flower4c.changeAnimation('flower');
+        }
+        if (this.flower4d.overlap(playerSprite)) {
+            this.flower4d.changeAnimation('flower');
+        }
+        if (this.flower4e.overlap(playerSprite)) {
+            this.flower4e.changeAnimation('flower');
         }
     }
 }
@@ -691,35 +820,78 @@ class flowerScreen extends PNGRoom {
 class waterScreen extends PNGRoom {
 
     preload() {
-        //draw npcs
-        this.npc1 = createSprite(662, 192);
+        //preload npcs
+        this.npc1 = createSprite(1218, 590);
         this.npc1.addAnimation('regular', loadAnimation('assets/NPCS/npc201.png', 'assets/NPCS/npc206.png'));
-        this.npc2 = createSprite(1056, 322);
+        this.npc2 = createSprite(1060, 590);
         this.npc2.addAnimation('regular', loadAnimation('assets/NPCS/npc301.png', 'assets/NPCS/npc306.png'));
-        this.npc3 = createSprite(547, 443);
-        this.npc3.addAnimation('regular', loadAnimation('assets/NPCS/npc401.png', 'assets/NPCS/npc406.png'));
-        //draw dialogue boxes
-        this.watertalk = createSprite(666, 90);
+        //preload dialogue boxes
+        this.watertalk = createSprite(1060, 450);
         this.watertalk.addAnimation('talk', loadAnimation('assets/dialogue/WaterText.png'));
-    }
+        //waterbottle litter
+        this.waterbottle1 = createSprite(random(956, 1235), random(162, 253));
+        this.waterbottle1.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.waterbottle1.addAnimation('litter', loadAnimation('assets/waterbottle.png'));
+        this.waterbottle2 = createSprite(random(956, 1235), random(162, 253));
+        this.waterbottle2.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.waterbottle2.addAnimation('litter', loadAnimation('assets/waterbottle.png'));
+        this.waterbottle3 = createSprite(random(956, 1235), random(162, 253));
+        this.waterbottle3.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.waterbottle3.addAnimation('litter', loadAnimation('assets/waterbottle.png'));
+        this.waterbottle4 = createSprite(random(44, 589), random(136, 218));
+        this.waterbottle4.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.waterbottle4.addAnimation('litter', loadAnimation('assets/waterbottle.png'));
+        this.waterbottle5 = createSprite(random(44, 589), random(136, 218));
+        this.waterbottle5.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.waterbottle5.addAnimation('litter', loadAnimation('assets/waterbottle.png'));
+        this.waterbottle6 = createSprite(random(44, 589), random(136, 218));
+        this.waterbottle6.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.waterbottle6.addAnimation('litter', loadAnimation('assets/waterbottle.png'));
+        this.waterbottle7 = createSprite(random(44, 589), random(136, 218));
+        this.waterbottle7.addAnimation('empty', loadAnimation('assets/flowerempty.png'));
+        this.waterbottle7.addAnimation('litter', loadAnimation('assets/waterbottle.png'));
 
-    load() {
-        super.load();
     }
-
     draw() {
         //place sprites
         super.draw();
         drawSprite(this.npc1);
         drawSprite(this.npc2);
-        drawSprite(this.npc3);
         drawSprite(this.watertalk);
+        drawSprite (this.waterbottle1);
+        drawSprite (this.waterbottle2);
+        drawSprite (this.waterbottle3);
+        drawSprite (this.waterbottle4);
+        drawSprite (this.waterbottle5);
+        drawSprite (this.waterbottle6);
+        drawSprite (this.waterbottle7);
 
-
-        if (playerSprite.overlap(this.npc1)) {
+        if (playerSprite.overlap(this.npc2)) {
             this.watertalk.visible = true;
         } else {
             this.watertalk.visible = false;
+        }
+        //walk over path and the litter starts to show
+        if (this.waterbottle1.overlap(playerSprite)) {
+            this.waterbottle1.changeAnimation('litter');
+        }
+        if (this.waterbottle2.overlap(playerSprite)) {
+            this.waterbottle2.changeAnimation('litter');
+        }
+        if (this.waterbottle3.overlap(playerSprite)) {
+            this.waterbottle3.changeAnimation('litter');
+        }
+        if (this.waterbottle4.overlap(playerSprite)) {
+            this.waterbottle4.changeAnimation('litter');
+        }
+        if (this.waterbottle5.overlap(playerSprite)) {
+            this.waterbottle5.changeAnimation('litter');
+        }
+        if (this.waterbottle6.overlap(playerSprite)) {
+            this.waterbottle6.changeAnimation('litter');
+        }
+        if (this.waterbottle7.overlap(playerSprite)) {
+            this.waterbottle7.changeAnimation('litter');
         }
     }
 }
@@ -727,32 +899,49 @@ class waterScreen extends PNGRoom {
 class photoScreen extends PNGRoom {
 
     preload() {
-        // preload dialogue that opens when enter screen
-
-    }
-
-    load() {
-
+        //npc preload
+        this.npc1 = createSprite(807, 517);
+        this.npc1.addAnimation('regular', loadAnimation('assets/NPCS/npc301.png', 'assets/NPCS/npc306.png'));
+        this.npc2 = createSprite(1099, 385);
+        this.npc2.addAnimation('regular', loadAnimation('assets/NPCS/npc401.png', 'assets/NPCS/npc406.png'));
+        this.npc3 = createSprite(1000, 206);
+        this.npc3.addAnimation('regular', loadAnimation('assets/NPCS/npc501.png', 'assets/NPCS/npc506.png'));
+        //dialogue
+        this.photoScreen = createSprite(1099, 270);
+        this.photoScreen.addAnimation('talk', loadAnimation('assets/dialogue/PhotoText.png'));
+        this.photoScreen1 = createSprite(1000, 60);
+        this.photoScreen1.addAnimation('talk', loadAnimation('assets/dialogue/PhotoText1.png'));
     }
 
     draw() {
-
+        super.draw();
+        drawSprite(this.npc1);
+        drawSprite(this.npc2);
+        drawSprite(this.npc3);
+        drawSprite(this.photoScreen);
+        drawSprite(this.photoScreen1);
+        //dialogue interaction
+        if (playerSprite.overlap(this.npc2)) {
+            this.photoScreen.visible = true;
+        } else {
+            this.photoScreen.visible = false;
+        }
+        if (playerSprite.overlap(this.npc3)) {
+            this.photoScreen1.visible = true;
+        } else {
+            this.photoScreen1.visible = false;
+        }
     }
 }
 
 
-
-// class endingScreen extends PNGRoom {
-
-//     preload() {
-
-//     }
-
-//     load() {
-
-//     }
-
-//     draw() {
-
-//     }
-// }
+class endingScreen extends PNGRoom {
+    preload() {
+        this.endingDialogue = createSprite(662, 300);
+        this.endingDialogue.addAnimation('talk', loadAnimation('assets/dialogue/EndingText.png'));
+    }
+    draw() {
+        super.draw();
+        drawSprite(this.endingDialogue);
+    }
+}

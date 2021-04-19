@@ -11,5 +11,5 @@ ID,StateName,ClassName,PNGFilename,CollisionFilename
 8,Utensils,UtensilsScreen,assets/utensilsbackground.png,assets/utensilsbackground_cl.csv
 9,Fruits,FruitsScreen,assets/fruitbackground.png,assets/fruitbackground_cl.csv
 10,Swimming,swimmingScreen,assets/swimmingbackground.png,assets/swimmingbackground_cl.csv
-11,Photo,PNGRoom,assets/photobackgrounds.png,assets/photobackgrounds_cl.csv
-12,Ending,PNGRoom,assets/endingbackground.png,assets/endingbackground_cl.csv
+11,Photo,photoScreen,assets/photobackgrounds.png,assets/photobackgrounds_cl.csv
+12,Ending,endingScreen,assets/endingbackground.png,assets/endingbackground_cl.csv
