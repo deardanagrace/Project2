@@ -1,8 +1,13 @@
 /***********************************************************************************
-Vacay
+Vacayyy (Project 2)
   by Dana Capistrano
-  
-mwahahah i finished the code, bitches. only took me a billion years!!!!!!!! heheheheh
+
+"Vacayyy" is a satirical p5.play game critiquing toxic mass tourism and mission trips. 
+These trips to these islands are often coming from a selfish motive. Whether to help 
+colonize these islands "for the better" or escape from ordinary life, mass tourism harms 
+more than good. The user plays as a young, innocent girl coming to the island to help
+ improve it and to also vacation at the same time. Follow her along as she visits the 
+ island and talks to locals. Interact with them and the culture and help out where you see fit.
 ***********************************************************************************/
 // adventure manager global  
 var adventureManager;
