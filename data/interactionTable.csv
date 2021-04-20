@@ -20,3 +20,5 @@ Fruits,,,,,N,Swimming
 Utensils,,,,,S,Houses
 Utensils,,,,,N,Fruits
 Houses,,,,,N,Utensils
+Ending,,,,AboutTheGame,,About
+About,,,,PlayAgain,,Instructions

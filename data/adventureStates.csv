@@ -1,6 +1,6 @@
 ID,StateName,ClassName,PNGFilename,CollisionFilename
-0,Splash,PNGRoom,assets/airplanewindowbackground.png,
-1,Instructions,InstructionsScreen,assets/Instructions.png,
+0,Splash,PNGRoom,assets/titlepage.gif,
+1,Instructions,InstructionsScreen,assets/plainbackground.png,
 3,ExitPlane,ExitPlaneScreen,assets/airplane.png,
 2,UglyIsland,UglyIslandScreen,assets/islandviwq.gif,
 3,Language,LanguageScreen,assets/languagebackground.png,assets/languagebackground_cl.csv
@@ -13,3 +13,4 @@ ID,StateName,ClassName,PNGFilename,CollisionFilename
 10,Swimming,swimmingScreen,assets/swimmingbackground.png,assets/swimmingbackground_cl.csv
 11,Photo,photoScreen,assets/photobackgrounds.png,assets/photobackgrounds_cl.csv
 12,Ending,endingScreen,assets/endingbackground.png,assets/endingbackground_cl.csv
+11,About,aboutScreen,assets/plainbackground.png,

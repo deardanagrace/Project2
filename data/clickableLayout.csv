@@ -4,3 +4,5 @@ ID,Name,State,PNGFilename,Text,x,y,visible
 2,ExitThePlane,ExitPlane,,Exit the Plane,550,580,yes
 3,GoRight,UglyIsland,,Go Right,1070,580,yes
 4,GoLeft,UglyIsland,,Go Left,136,580,yes
+5,AboutTheGame,Ending,,>>,1070,580,yes
+6,PlayAgain,About,,Play Again?,550,580,yes

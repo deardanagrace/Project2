@@ -4,10 +4,9 @@ Vacay
   
 mwahahah i finished the code, bitches. only took me a billion years!!!!!!!! heheheheh
 ***********************************************************************************/
-
 // adventure manager global  
 var adventureManager;
-
+var canvas;
 // p5.play
 var playerSprite;
 var playerAnimation;
@@ -37,7 +36,8 @@ function preload() {
 
 // Setup the adventure manager
 function setup() {
-    createCanvas(1280, 720);
+    canvas = createCanvas(1280, 720);
+    canvas.position(windowWidth / 2 - 640, windowHeight / 2 - 360);
     playerSprite = createSprite(200, 620);
     var myAnimation = playerSprite.addAnimation('idle', 'assets/femidle01.png', 'assets/femidle02.png', 'assets/femidle03.png', 'assets/femidle04.png', 'assets/femidle05.png', 'assets/femidle05.png', 'assets/femidle06.png');
     playerSprite.addAnimation('walking', 'assets/femwalk01.png', 'assets/femwalk02.png', 'assets/femwalk03.png', 'assets/femwalk04.png', 'assets/femwalk05.png');
@@ -75,7 +75,8 @@ function draw() {
     if (adventureManager.getStateName() !== "Splash" &&
         adventureManager.getStateName() !== "Instructions" &&
         adventureManager.getStateName() !== "ExitPlane" &&
-        adventureManager.getStateName() !== "UglyIsland") {
+        adventureManager.getStateName() !== "UglyIsland" &&
+        adventureManager.getStateName() !== "About") {
         // responds to keydowns
         moveSprite();
         // this is a function of p5.js, not of this sketch
@@ -238,9 +239,11 @@ class InstructionsScreen extends PNGRoom {
         super.draw();
 
         // text draw settings
-        fill(255);
+        fill(0);
         textAlign(CENTER);
         textSize(30);
+        textFont(myHeadingFont);
+
 
         // Draw text in a box
         text(this.instructionsText, width / 6, height / 6, this.textBoxWidth, this.textBoxHeight);
@@ -484,7 +487,7 @@ class FruitsScreen extends PNGRoom {
 }
 
 // function collect() {
-// 	this.persimonSprites.remove()
+//  this.persimonSprites.remove()
 // }
 class LanguageScreen extends PNGRoom {
 
@@ -858,13 +861,13 @@ class waterScreen extends PNGRoom {
         drawSprite(this.npc1);
         drawSprite(this.npc2);
         drawSprite(this.watertalk);
-        drawSprite (this.waterbottle1);
-        drawSprite (this.waterbottle2);
-        drawSprite (this.waterbottle3);
-        drawSprite (this.waterbottle4);
-        drawSprite (this.waterbottle5);
-        drawSprite (this.waterbottle6);
-        drawSprite (this.waterbottle7);
+        drawSprite(this.waterbottle1);
+        drawSprite(this.waterbottle2);
+        drawSprite(this.waterbottle3);
+        drawSprite(this.waterbottle4);
+        drawSprite(this.waterbottle5);
+        drawSprite(this.waterbottle6);
+        drawSprite(this.waterbottle7);
 
         if (playerSprite.overlap(this.npc2)) {
             this.watertalk.visible = true;
@@ -943,5 +946,31 @@ class endingScreen extends PNGRoom {
     draw() {
         super.draw();
         drawSprite(this.endingDialogue);
+    }
+}
+
+class aboutScreen extends PNGRoom {
+    preload() {
+
+        this.textBoxWidth = (width / 6) * 4;
+        this.textBoxHeight = (height / 6) * 4;
+
+
+        this.aboutText = "Be mindful when you vacation. Tourism often times leads to the commodification of cultures. Modern tourism is created to make profit off of a culture, and often times the profit does not go back to the community it takes advantage of.There are cultures that existed before and during your stay. We must respect that. Over consumption causes problems such as water shortages, frequesnt loss of electricty, over fishing of local waters and more. The over production of waste is an ever-present threat to tourist communities. It also damages a lot of local and natural habitats of indigenous animals. While these effects are trying to be avoided, there are still large masses of people coming to these locations. As a result many of these destinations alter historical sites by having to ad garbages, trails, bathrooms, and other land altering objects. Remember, these lands are not for your tourism. They are their own safe spaces.";
+    }
+
+    draw() {
+
+        // this calls PNGRoom.draw()
+        super.draw();
+
+        // text draw settings
+        fill(0);
+        textAlign(CENTER);
+        textSize(25);
+        textFont(myHeadingFont);
+
+        // Draw text in a box
+        text(this.aboutText, width / 6, height / 6, this.textBoxWidth, this.textBoxHeight);
     }
 }
