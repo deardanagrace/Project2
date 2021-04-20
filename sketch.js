@@ -11,7 +11,8 @@ var canvas;
 var playerSprite;
 var playerAnimation;
 var collectibles;
-var coral1;
+var funkytune;
+
 //load the font
 var myHeadingFont;
 var myBodyFont;
@@ -31,7 +32,8 @@ function preload() {
     adventureManager = new AdventureManager('data/adventureStates.csv', 'data/interactionTable.csv', 'data/clickableLayout.csv');
     myHeadingFont = loadFont('assets/Mondwest-Regular.otf');
     myBodyFont = loadFont('assets/NeueBit-Bold.otf');
-
+    //setting up the funkytune
+    funkytune = loadSound('assets/bgmusic.wav');
 }
 
 // Setup the adventure manager
@@ -42,9 +44,6 @@ function setup() {
     var myAnimation = playerSprite.addAnimation('idle', 'assets/femidle01.png', 'assets/femidle02.png', 'assets/femidle03.png', 'assets/femidle04.png', 'assets/femidle05.png', 'assets/femidle05.png', 'assets/femidle06.png');
     playerSprite.addAnimation('walking', 'assets/femwalk01.png', 'assets/femwalk02.png', 'assets/femwalk03.png', 'assets/femwalk04.png', 'assets/femwalk05.png');
     playerSprite.addAnimation('swimming', 'assets/NPCS/femswimming01.png', 'assets/NPCS/femswimming04.png');
-
-
-
     // setup the clickables = this will allocate the array
     clickables = clickablesManager.setup();
     // use this to track movement from toom to room in adventureManager.draw()
@@ -96,7 +95,6 @@ function keyPressed() {
     // dispatch key events for adventure manager to move from state to 
     // state or do special actions - this can be disabled for NPC conversations
     // or text entry   
-
     // dispatch to elsewhere
     adventureManager.keyPressed(key);
 }
@@ -104,6 +102,7 @@ function keyPressed() {
 function mouseReleased() {
     adventureManager.mouseReleased();
 }
+
 //-------------- YOUR SPRITE MOVEMENT CODE HERE  ---------------//
 function moveSprite() {
     // move side to side
@@ -175,6 +174,14 @@ function moveSwimSprite() {
     }
 }
 
+function mousePressed () {
+    if (funkytune.isPlaying ()) {
+        // funkytune.stop ();
+    }else {
+        funkytune.loop();
+    }
+}
+
 //-------------- CLICKABLE CODE  ---------------//
 
 function setupClickables() {
@@ -191,8 +198,6 @@ clickableButtonHover = function() {
     this.color = "#f400a1";
     this.noTint = false;
     this.tint = "#b6d42c";
-
-
 }
 
 // color a green if off
@@ -243,7 +248,6 @@ class InstructionsScreen extends PNGRoom {
         textAlign(CENTER);
         textSize(30);
         textFont(myHeadingFont);
-
 
         // Draw text in a box
         text(this.instructionsText, width / 6, height / 6, this.textBoxWidth, this.textBoxHeight);
@@ -954,7 +958,6 @@ class aboutScreen extends PNGRoom {
 
         this.textBoxWidth = (width / 6) * 4;
         this.textBoxHeight = (height / 6) * 4;
-
 
         this.aboutText = "Be mindful when you vacation. Tourism often times leads to the commodification of cultures. Modern tourism is created to make profit off of a culture, and often times the profit does not go back to the community it takes advantage of.There are cultures that existed before and during your stay. We must respect that. Over consumption causes problems such as water shortages, frequesnt loss of electricty, over fishing of local waters and more. The over production of waste is an ever-present threat to tourist communities. It also damages a lot of local and natural habitats of indigenous animals. While these effects are trying to be avoided, there are still large masses of people coming to these locations. As a result many of these destinations alter historical sites by having to ad garbages, trails, bathrooms, and other land altering objects. Remember, these lands are not for your tourism. They are their own safe spaces.";
     }
